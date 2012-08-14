@@ -96,8 +96,11 @@ check_child(int _count) {
             return 0;
         }
 
-/*FIXME: multi child and _count > 0 */
-           /*parent return brfore child*/
+/*
+ *FIXME: multi child and _count > 0
+ *           parent return brfore child
+ *           SOwe must kill all child
+ */
         if(_count > 0) {
             mni_fork(1, "", --_count);
         } else {
