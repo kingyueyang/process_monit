@@ -29,7 +29,7 @@ int mni_fork(unsigned int forknum, void(*ptr)(), const char *eval, int count);
 
 int
 main(int argc, char *argv[]) {
-    mni_fork(1, example_2, "", 0);
+    mni_fork(2, example_2, "", 0);
 
     return EXIT_SUCCESS;
 }				/* ----------  end of function main  ---------- */
@@ -58,9 +58,9 @@ example_2(void) {
 
 int
 mni_fork(unsigned int forknum, void(*ptr)(), const char *eval, int count) {
-/*
- *TODO: judgment function or executed
- */
+    /*
+     *TODO: judgment function or executed
+     */
     int i;
     pid_t pid;
 
@@ -97,14 +97,14 @@ check_child(void(*ptr)(), int _count) {
         }
         printf("terminal %d\n", pid);
 
-         /*
-          *_count equl 0:
-          *     Don't up child
-          *greater than 0:
-          *     Up _count times
-          *equl -1:
-          *     always up
-          */
+        /*
+         *_count equl 0:
+         *     Don't up child
+         *greater than 0:
+         *     Up _count times
+         *equl -1:
+         *     always up
+         */
         if(0 == _count) {
             printf("chile %d terminal\n", pid);
             return 0;
