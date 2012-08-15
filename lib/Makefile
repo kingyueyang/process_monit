@@ -1,7 +1,7 @@
 all:monitor
 FLAG= -Wall -g -O2
 monitor:monitor.c
-	gcc -o $@ $^ ${FLAG}
+	clang -o $@ $^ ${FLAG}
 
 .PYHON:
 clean:
