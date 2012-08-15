@@ -35,29 +35,29 @@ main ( int argc, char *argv[] ) {
 
 int
 mni_fork(unsigned int forknum, const char *eval, int count) {
-  int i;
-	int rt;
-	pid_t pid = 0;
+    int i;
+    int rt;
+    pid_t pid = 0;
 
-  for(i = 0; i < forknum; ++i) {
-      pid = fork();
+    for(i = 0; i < forknum; ++i) {
+        pid = fork();
 
-      if(-1 == pid) {
-          /* Error */
-          perror("Create process error!\n");
-          return -1;
-      }
-      if(0 == pid) {
-          /*Do something*/
-          rt = example();
-          return rt;
-      } else {
-          /*printf("I am farther,child is %d,index is %d\n", pid, i);*/
-      }
-  }
+        if(-1 == pid) {
+            /* Error */
+            perror("Create process error!\n");
+            return -1;
+        }
+        if(0 == pid) {
+            /*Do something*/
+            rt = example();
+            return rt;
+        } else {
+            /*printf("I am farther,child is %d,index is %d\n", pid, i);*/
+        }
+    }
 
-  check_child(count);
-  return 0;
+    check_child(count);
+    return 0;
 }
 
 int
@@ -96,11 +96,11 @@ check_child(int _count) {
             return 0;
         }
 
-/*
- *FIXME: multi child and _count > 0
- *           parent return brfore child
- *           SOwe must kill all child
- */
+        /*
+         *FIXME: multi child and _count > 0
+         *           parent return brfore child
+         *           SOwe must kill all child
+         */
         if(_count > 0) {
             mni_fork(1, "", --_count);
         } else {
