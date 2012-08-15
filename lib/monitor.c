@@ -29,7 +29,7 @@ int mni_fork(unsigned int forknum, void(*ptr)(), const char *eval, int count);
 
 int
 main(int argc, char *argv[]) {
-    mni_fork(1, example_2, "", -1);
+    mni_fork(1, example_2, "", 0);
 
     return EXIT_SUCCESS;
 }				/* ----------  end of function main  ---------- */
@@ -58,8 +58,11 @@ example_2(void) {
 
 int
 mni_fork(unsigned int forknum, void(*ptr)(), const char *eval, int count) {
+/*
+ *TODO: judgment function or executed
+ */
     int i;
-    pid_t pid = 0;
+    pid_t pid;
 
     for(i = 0; i < forknum; ++i) {
         pid = fork();
