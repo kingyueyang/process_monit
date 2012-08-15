@@ -117,7 +117,6 @@ check_child(void(*_ptr)(), const char* _eval, int _count) {
             mni_fork(1, *_ptr, "", -1);
         }
 
-        printf("--------------------parent terminal--------------------\n");
         break;
     }
 
