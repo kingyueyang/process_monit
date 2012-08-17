@@ -20,6 +20,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <time.h>
+#include <syslog.h>
+#include <stdarg.h>
 #include <sys/wait.h>
 
 void example_1(void);
@@ -29,6 +31,7 @@ int mni_fork(unsigned int forknum, void(*ptr)(), const char *eval, int count);
 
 int
 main(int argc, char *argv[]) {
+    openlog("process-monitor", LOG_PID | LOG_PERROR, LOG_AUTH);
     mni_fork(2, example_2, "", 1);
 
     return EXIT_SUCCESS;
@@ -36,7 +39,6 @@ main(int argc, char *argv[]) {
 
 void
 example_1(void) {
-    printf("%d\n", getpid());
     while(1) {
         sleep(5);
         printf("%d:examplt 1...\n", getpid());
@@ -47,7 +49,6 @@ example_1(void) {
 
 void
 example_2(void) {
-    printf("%d\n", getpid());
     while(1) {
         sleep(5);
         printf("%d:examplt 2...\n", getpid());
@@ -78,7 +79,7 @@ mni_fork(unsigned int forknum, void(*ptr)(), const char *eval, int count) {
             return 0;
         } else {
             /* Parent */
-            printf("child: %d\n", getppid());
+            printf("child: %d\n", getpid());
         }
     }
 
@@ -97,6 +98,7 @@ check_child(void(*_ptr)(), const char* _eval, int _count) {
             continue;
         }
         printf("terminal %d\n", pid);
+        syslog(LOG_ERR, "chile process %d terminal", pid);
 
         /*
          *_count equl 0:
@@ -107,7 +109,6 @@ check_child(void(*_ptr)(), const char* _eval, int _count) {
          *     always up
          */
         if(0 == _count) {
-            printf("chile %d terminal\n", pid);
             return 0;
         }
 
@@ -120,6 +121,7 @@ check_child(void(*_ptr)(), const char* _eval, int _count) {
         break;
     }
 
+    closelog();
     return 0;
 }
 
