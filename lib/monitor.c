@@ -8,9 +8,9 @@
  *        Version:  1.0
  *        Created:  08/14/2012 04:31:46 PM
  *       Revision:  none
- *       Compiler:  gcc
+ *       Compiler:  gcc/clang
  *
- *         Author:  YueYang (feinno), yueyang@feinno.com
+ *         Author:  YueYang (feinno), bj.yueyang@gmail.com
  *        Company:  FCT
  *
  * =====================================================================================
@@ -59,9 +59,6 @@ example_2(void) {
 
 int
 mni_fork(unsigned int forknum, void(*ptr)(), const char *eval, int count) {
-    /*
-     *TODO: judgment function or executed
-     */
     int i;
     pid_t pid;
 

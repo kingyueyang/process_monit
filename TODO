@@ -1,1 +1,2 @@
-fixed: callback function used daemon();
+FIXME: callback function used daemon();
+TODO: judg function or external binary in mni_fork()
